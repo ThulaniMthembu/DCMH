@@ -84,7 +84,7 @@ function ServicesSection() {
     <section className="py-12 sm:py-16 md:py-20 bg-gray-900">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center">Our Unique Approach</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -109,9 +109,9 @@ function ActivationSection() {
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-black">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col lg:flex-row items-center">
           <motion.div
-            className="md:w-1/2 mb-8 md:mb-0"
+            className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -133,7 +133,7 @@ function ActivationSection() {
             </Button>
           </motion.div>
           <motion.div
-            className="md:w-1/2 mt-8 md:mt-0"
+            className="lg:w-1/2 mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -157,8 +157,8 @@ function CtaSection() {
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-8 md:mb-0">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
+          <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Bring Your Brand to Life?</h2>
             <p className="text-base sm:text-lg md:text-xl mb-6">
               Let&apos;s create engaging experiences that drive results for your business.
@@ -167,7 +167,7 @@ function CtaSection() {
               <Link href="/contact">Contact Us <ArrowRight className="ml-2" /></Link>
             </Button>
           </div>
-          <div className="md:w-1/2 mt-8 md:mt-0">
+          <div className="lg:w-1/2 mt-8 lg:mt-0">
             <Image
               src="/ceo-img.jpg"
               alt="Dot Com Media House Team"
