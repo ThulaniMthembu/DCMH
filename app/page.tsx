@@ -23,10 +23,9 @@ function HeroSection() {
       <Image
         src="/homepage-img.jpeg"
         alt="Hero background"
-        layout="fill"
-        objectFit="cover"
-        quality={100}
+        fill
         priority
+        quality={100}
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>

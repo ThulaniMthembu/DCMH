@@ -4,7 +4,12 @@ const nextConfig = {
 	swcMinify: true,
 	transpilePackages: ['framer-motion'],
 	images: {
-		domains: ['placeholder.com'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'placeholder.com',
+			},
+		],
 	},
 };
 
