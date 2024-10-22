@@ -74,7 +74,7 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 ${isMenuOpen ? 'bg-black' : 'bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg'}`}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           <Link href="/" className="flex items-center space-x-3">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -83,7 +83,7 @@ export default function Header() {
               className="flex items-center space-x-3"
             >
               {imageError ? (
-                <span className="text-white text-xl font-bold">Dot Com Media House</span>
+                <span className="text-white text-lg sm:text-xl font-bold">Dot Com Media House</span>
               ) : (
                 <>
                   <div className="overflow-hidden rounded-full">
@@ -92,21 +92,21 @@ export default function Header() {
                       alt="Dot Com Media House Logo"
                       width={160}
                       height={48}
-                      className="h-14 w-14 object-cover"
+                      className="h-10 w-10 sm:h-14 sm:w-14 object-cover"
                       onError={() => setImageError(true)}
                     />
                   </div>
-                  <span className="text-white text-xl font-bold">DCMH</span>
+                  <span className="text-white text-lg sm:text-xl font-bold">DCMH</span>
                 </>
               )}
             </motion.div>
           </Link>
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden md:flex space-x-2 lg:space-x-4">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`hover:text-gray-300 transition-colors ${
+                className={`hover:text-gray-300 transition-colors text-sm lg:text-base ${
                   pathname === item.href ? 'text-red-500 font-bold' : 'text-white'
                 }`}
               >
@@ -171,13 +171,13 @@ export default function Header() {
                   key={item.href}
                   custom={index}
                   variants={menuItemVariants}
-                  className="mb-8"
+                  className="mb-6 sm:mb-8"
                 >
                   <Link
                     href={item.href}
                     className={`hover:text-gray-300 transition-colors ${
                       pathname === item.href ? 'text-red-500 font-bold' : 'text-white'
-                    } text-4xl`}
+                    } text-2xl sm:text-3xl md:text-4xl`}
                     onClick={toggleMenu}
                   >
                     {item.label}
