@@ -83,15 +83,15 @@ export default function Header() {
               className="flex items-center space-x-3"
             >
               {imageError ? (
-                <span className="text-white text-lg sm:text-xl font-bold">Dot Com Media House</span>
+                <span className="text-white text-lg sm:text-xl font-bold">DCMH</span>
               ) : (
                 <>
                   <div className="overflow-hidden rounded-full">
                     <Image
                       src="/logo.jpeg"
                       alt="Dot Com Media House Logo"
-                      width={160}
-                      height={48}
+                      width={40}
+                      height={40}
                       className="h-10 w-10 sm:h-14 sm:w-14 object-cover"
                       onError={() => setImageError(true)}
                     />
@@ -114,58 +114,60 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-white z-50 md:hidden"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white z-50"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <motion.path
-                  d="M3 6H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.path
-                  d="M3 12H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.path
-                  d="M3 18H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </svg>
-            </motion.div>
-          </Button>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <motion.path
+                    d="M3 6H21"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.path
+                    d="M3 12H21"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.path
+                    d="M3 18H21"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </svg>
+              </motion.div>
+            </Button>
+          </div>
         </div>
       </div>
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black"
+            className="fixed inset-0 z-40 bg-black overflow-y-auto"
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
           >
-            <nav className="flex flex-col items-center justify-center h-screen">
+            <nav className="flex flex-col items-center justify-center min-h-screen py-20">
               {menuItems.map((item, index) => (
                 <motion.div
                   key={item.href}

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white overflow-x-hidden">
       <HeroSection />
       <ServicesSection />
       <ActivationSection />
@@ -31,7 +31,7 @@ function HeroSection() {
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-shadow-lg"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -39,7 +39,7 @@ function HeroSection() {
           Welcome to Dot Com Media House
         </motion.h1>
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-shadow-md"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-shadow-md"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -82,7 +82,7 @@ function ServicesSection() {
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center">Our Unique Approach</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center">Our Unique Approach</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -93,8 +93,8 @@ function ServicesSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <service.icon className="w-10 h-10 sm:w-12 sm:h-12 mb-4 text-blue-500" />
-              <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">{service.title}</h3>
+              <service.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-4 text-blue-500" />
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-4">{service.title}</h3>
               <p className="text-gray-400 text-sm sm:text-base">{service.description}</p>
             </motion.div>
           ))}
@@ -116,8 +116,8 @@ function ActivationSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Activation Package</h2>
-            <p className="text-base sm:text-lg mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Activation Package</h2>
+            <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6">
               Our activation package goes beyond traditional marketing. We bring your products and services to life, 
               creating memorable experiences that resonate with your audience.
             </p>
@@ -158,8 +158,8 @@ function CtaSection() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Bring Your Brand to Life?</h2>
-            <p className="text-base sm:text-lg md:text-xl mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Ready to Bring Your Brand to Life?</h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6">
               Let&apos;s create engaging experiences that drive results for your business.
             </p>
             <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 w-full sm:w-auto">

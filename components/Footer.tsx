@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
         <div className="mt-4 text-center text-gray-500 text-xs">
           <a href="https://devmajxr.co.za" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors">
-            Website by Thulani Mthembu | thulanim457@gmail.com
+            Website by Dev-Majxr
           </a>
         </div>
       </div>
