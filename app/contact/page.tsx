@@ -131,7 +131,7 @@ function ContactInfoSection() {
           <ContactInfoItem
             icon={Phone}
             title="Phone"
-            content="069 639 9467"
+            content="+27 69 639 9467"
           />
           <ContactInfoItem
             icon={Mail}

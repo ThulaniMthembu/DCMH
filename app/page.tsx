@@ -1,9 +1,10 @@
 'use client'
 
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "framer-motion"
-import { ArrowRight, Eye, Users, MapPin } from "lucide-react"
+import { ArrowRight, Eye, Users, MapPin, Play, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -153,6 +154,20 @@ function ActivationSection() {
 }
 
 function CtaSection() {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play()
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-4">
@@ -166,14 +181,23 @@ function CtaSection() {
               <Link href="/contact">Contact Us <ArrowRight className="ml-2" /></Link>
             </Button>
           </div>
-          <div className="lg:w-1/2 mt-8 lg:mt-0">
-            <Image
-              src="/ceo-img.jpg"
-              alt="Dot Com Media House Team"
-              width={600}
-              height={400}
+          <div className="lg:w-1/2 mt-8 lg:mt-0 relative">
+            <video
+              ref={videoRef}
+              src="/videos/homepage-vid.mp4"
               className="rounded-lg shadow-2xl w-full"
+              loop
+              muted
+              playsInline
             />
+            <Button
+              variant="outline"
+              size="icon"
+              className="absolute bottom-4 right-4 bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+              onClick={togglePlay}
+            >
+              {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+            </Button>
           </div>
         </div>
       </div>
