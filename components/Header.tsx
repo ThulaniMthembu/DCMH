@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
@@ -60,6 +61,19 @@ export default function Header() {
   }, [pathname])
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -72,7 +86,15 @@ export default function Header() {
   }, [isMenuOpen])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${isMenuOpen ? 'bg-black' : 'bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg'}`}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        isMenuOpen 
+          ? 'bg-black' 
+          : isScrolled 
+            ? 'bg-black bg-opacity-20 backdrop-filter backdrop-blur-lg' 
+            : 'bg-black'
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link href="/" className="flex items-center space-x-3">

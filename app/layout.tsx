@@ -1,8 +1,13 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import "./globals.css"
+import { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 
-export const metadata = {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.dotcommediahouse.com'),
   title: {
     default: 'Dot Com Media House | Innovative Media Solutions',
     template: '%s | Dot Com Media House'
@@ -15,7 +20,6 @@ export const metadata = {
   }],
   creator: 'Thulani Dev-Majxr Mthembu',
   publisher: 'Dot Com Media House',
-  email: 'thulanim457@gmail.com',
   formatDetection: {
     email: false,
     address: false,
@@ -63,8 +67,16 @@ export const metadata = {
   verification: {
     google: 'your-google-site-verification-code',
     yandex: 'your-yandex-verification-code',
-    bing: 'your-bing-verification-code',
   },
+  alternates: {
+    canonical: 'https://www.dotcommediahouse.com',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({
@@ -73,8 +85,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-black text-white flex flex-col">
+    <html lang="en" className={inter.className}>
+      <body className="min-h-screen bg-background text-foreground flex flex-col">
         <Header />
         <main className="flex-grow pt-16">{children}</main>
         <Footer />

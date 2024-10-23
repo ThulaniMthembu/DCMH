@@ -68,9 +68,7 @@ const nextConfig = {
 							);
 						},
 						name(module) {
-							const hash = crypto.createHash('sha1');
-							hash.update(module.identifier());
-							return hash.digest('hex').substring(0, 8);
+							return `npm.${module.libIdent({ context: 'node_modules' })}`;
 						},
 						priority: 30,
 						minChunks: 1,

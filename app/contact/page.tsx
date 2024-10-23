@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser'
 import toast, { Toaster } from 'react-hot-toast'
 import { CheckCircle, XCircle, MapPin, Clock, Phone, Mail } from 'lucide-react'
 
