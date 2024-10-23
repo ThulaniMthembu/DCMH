@@ -86,7 +86,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="min-h-screen bg-background text-foreground flex flex-col">
+      <body className="min-h-screen bg-background text-foreground flex flex-col" suppressHydrationWarning>
         <Header />
         <main className="flex-grow pt-16">{children}</main>
         <Footer />

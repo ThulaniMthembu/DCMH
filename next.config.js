@@ -4,7 +4,6 @@ const nextConfig = {
 	swcMinify: true,
 	transpilePackages: ['framer-motion'],
 	images: {
-		domains: ['dotcommediahouse.com', 'www.dotcommediahouse.com'],
 		remotePatterns: [
 			{
 				protocol: 'https',
@@ -19,7 +18,6 @@ const nextConfig = {
 				hostname: '*.vercel.app',
 			},
 		],
-		unoptimized: true,
 	},
 	async headers() {
 		return [
