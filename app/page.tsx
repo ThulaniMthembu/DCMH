@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "framer-motion"
@@ -52,8 +52,11 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 w-full sm:w-auto">
-            <Link href="/contact">Experience the Difference <ArrowRight className="ml-2" /></Link>
+          <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+            <Link href="/contact">
+              Experience the Difference 
+              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </Button>
         </motion.div>
       </div>
@@ -88,11 +91,12 @@ function ServicesSection() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-black p-6 rounded-lg"
+              className="bg-black p-6 rounded-lg hover:bg-gray-800 transition-colors duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
             >
               <service.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-4 text-blue-500" />
               <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-4">{service.title}</h3>
@@ -123,13 +127,16 @@ function ActivationSection() {
               creating memorable experiences that resonate with your audience.
             </p>
             <ul className="list-disc list-inside mb-6 text-sm sm:text-base">
-              <li>Gather valuable leads</li>
-              <li>Answer and collect FAQs</li>
-              <li>Drive sales effectively</li>
-              <li>Increase brand loyalty</li>
+              <li className="hover:text-blue-400 transition-colors duration-300">Gather valuable leads</li>
+              <li className="hover:text-blue-400 transition-colors duration-300">Answer and collect FAQs</li>
+              <li className="hover:text-blue-400 transition-colors duration-300">Drive sales effectively</li>
+              <li className="hover:text-blue-400 transition-colors duration-300">Increase brand loyalty</li>
             </ul>
-            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 w-full sm:w-auto">
-              <Link href="/services">Learn More <ArrowRight className="ml-2" /></Link>
+            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+              <Link href="/services">
+                Learn More 
+                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </Button>
           </motion.div>
           <motion.div
@@ -139,13 +146,15 @@ function ActivationSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Image
-              src="/activation.jpg"
-              alt="Activation Package"
-              width={600}
-              height={400}
-              className="rounded-lg shadow-2xl w-full"
-            />
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+              <Image
+                src="/activation.jpg"
+                alt="Activation Package"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-2xl w-full"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -154,8 +163,14 @@ function ActivationSection() {
 }
 
 function CtaSection() {
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play()
+    }
+  }, [])
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -177,27 +192,37 @@ function CtaSection() {
             <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6">
               Let&apos;s create engaging experiences that drive results for your business.
             </p>
-            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 w-full sm:w-auto">
-              <Link href="/contact">Contact Us <ArrowRight className="ml-2" /></Link>
+            <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+              <Link href="/contact">
+                Contact Us 
+                <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </Button>
           </div>
-          <div className="lg:w-1/2 mt-8 lg:mt-0 relative">
-            <video
-              ref={videoRef}
-              src="/videos/homepage-vid.mp4"
-              className="rounded-lg shadow-2xl w-full"
-              loop
-              muted
-              playsInline
-            />
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute bottom-4 right-4 bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
-              onClick={togglePlay}
+          <div className="lg:w-1/2 mt-8 lg:mt-0 relative max-w-lg mx-auto">
+            <motion.div 
+              className="aspect-video"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
-            </Button>
+              <video
+                ref={videoRef}
+                src="/videos/homepage-vid.mp4"
+                className="rounded-lg shadow-2xl w-full h-full object-cover"
+                loop
+                muted
+                playsInline
+                autoPlay
+              />
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute bottom-4 right-4 bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+                onClick={togglePlay}
+              >
+                {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>

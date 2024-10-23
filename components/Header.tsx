@@ -17,7 +17,7 @@ export default function Header() {
   const menuItems = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/egaming', label: 'EGaming' },
+    { href: '/egaming', label: 'V-Gaming' },
     { href: '/services', label: 'Services' },
     { href: '/gallery', label: 'Gallery' },
     { href: '/contact', label: 'Contact' },
