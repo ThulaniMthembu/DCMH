@@ -9,7 +9,40 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'placeholder.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'dotcommediahouse.com',
+			},
 		],
+	},
+	async headers() {
+		return [
+			{
+				source: '/(.*)',
+				headers: [
+					{
+						key: 'X-Content-Type-Options',
+						value: 'nosniff',
+					},
+					{
+						key: 'X-Frame-Options',
+						value: 'DENY',
+					},
+					{
+						key: 'X-XSS-Protection',
+						value: '1; mode=block',
+					},
+				],
+			},
+		];
+	},
+	async rewrites() {
+		return [
+			{
+				source: '/api/:path*',
+				destination: 'https://api.dotcommediahouse.com/:path*',
+			},
+		];
 	},
 };
 
