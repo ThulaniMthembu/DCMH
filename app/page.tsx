@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "framer-motion"
-import { ArrowRight, Eye, Users, MapPin, Play, Pause } from "lucide-react"
+import { ArrowRight, Eye, Users, MapPin, Play, Pause, Volume2, VolumeX } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -27,7 +27,7 @@ function HeroSection() {
         fill
         priority
         quality={100}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -148,11 +148,11 @@ function ActivationSection() {
           >
             <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
               <Image
-                src="/activation.jpg"
+                src="/active.jpg"
                 alt="Activation Package"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-2xl w-full"
+                width={500}
+                height={250}
+                className="rounded-lg shadow-2xl w-full object-cover object-center"
               />
             </motion.div>
           </motion.div>
@@ -164,6 +164,7 @@ function ActivationSection() {
 
 function CtaSection() {
   const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -183,11 +184,18 @@ function CtaSection() {
     }
   }
 
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted
+      setIsMuted(!isMuted)
+    }
+  }
+
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
+          <div className="lg:w-2/5 mb-8 lg:mb-0 lg:pr-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Ready to Bring Your Brand to Life?</h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6">
               Let&apos;s create engaging experiences that drive results for your business.
@@ -199,7 +207,7 @@ function CtaSection() {
               </Link>
             </Button>
           </div>
-          <div className="lg:w-1/2 mt-8 lg:mt-0 relative max-w-lg mx-auto">
+          <div className="lg:w-3/5 mt-8 lg:mt-0 relative">
             <motion.div 
               className="aspect-video"
               whileHover={{ scale: 1.05 }}
@@ -207,21 +215,31 @@ function CtaSection() {
             >
               <video
                 ref={videoRef}
-                src="/videos/homepage-vid.mp4"
+                src="/videos/home-video.mp4"
                 className="rounded-lg shadow-2xl w-full h-full object-cover"
                 loop
-                muted
                 playsInline
                 autoPlay
+                muted={isMuted}
               />
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute bottom-4 right-4 bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
-                onClick={togglePlay}
-              >
-                {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
-              </Button>
+              <div className="absolute bottom-4 right-4 flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+                  onClick={togglePlay}
+                >
+                  {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+                  onClick={toggleMute}
+                >
+                  {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+                </Button>
+              </div>
             </motion.div>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "framer-motion"
-import { ArrowRight, Gamepad, Headphones, Monitor, Music } from "lucide-react"
+import { ArrowRight, Car, Gamepad, Gamepad2, Headphones, Joystick, Monitor, Music } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function EGaming() {
@@ -18,7 +18,7 @@ export default function EGaming() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
       <Image
         src="/egaming-img.jpg"
         alt="E-Gaming background"
@@ -31,7 +31,7 @@ function HeroSection() {
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-shadow-lg"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -39,7 +39,7 @@ function HeroSection() {
           Experience The Vibe Gaming
         </motion.h1>
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-shadow-md"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-shadow-md"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -72,8 +72,8 @@ function VibeGamingSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">The Vibe Gaming Mobile Booth</h2>
-            <p className="text-base sm:text-lg mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">The Vibe Gaming Mobile Booth</h2>
+            <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6">
               Experience gaming like never before with our state-of-the-art Vibe Gaming mobile booth. Perfect for events,
               activations, and private bookings.
             </p>
@@ -81,7 +81,7 @@ function VibeGamingSection() {
               {features.map((feature, index) => (
                 <motion.li
                   key={index}
-                  className="flex items-center text-sm sm:text-base group"
+                  className="flex items-center text-xs sm:text-sm md:text-base group"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -115,7 +115,7 @@ function VibeGamingSection() {
               transition={{ duration: 0.3 }}
             >
               <Image
-                src="/gallery-images/gallery-image-landscape3.jpg"
+                src="/gallery-images/gallery-image-landscape4.jpg"
                 alt="Vibe Gaming Mobile Booth"
                 width={600}
                 height={400}
@@ -131,9 +131,10 @@ function VibeGamingSection() {
 
 function VibeGamingShopSection() {
   const shopFeatures = [
-    { icon: Monitor, text: "Latest Gaming Consoles & PCs" },
+    { icon: Gamepad2, text: "Latest Gaming Consoles" },
+    { icon: Joystick, text: "Racing Simulators" },
     { icon: Headphones, text: "Immersive VR Experiences" },
-    { icon: Gamepad, text: "Professional Pool Table" },
+    { icon: Gamepad, text: "Pool Table" },
     { icon: Gamepad, text: "Wide Selection of Games" },
     { icon: Music, text: "Regular DJ & Music Events" },
   ]
@@ -142,7 +143,7 @@ function VibeGamingShopSection() {
     <section className="py-12 sm:py-16 md:py-20 bg-gray-800">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -178,7 +179,7 @@ function VibeGamingShopSection() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <p className="text-base sm:text-lg mb-6">
+            <p className="text-sm sm:text-base md:text-lg mb-6">
               Experience the ultimate gaming destination at our Newtown Junction Mall location. 
               Whether you&apos;re a casual gamer or a pro, we&apos;ve got something for everyone.
             </p>
@@ -186,14 +187,14 @@ function VibeGamingShopSection() {
               {shopFeatures.map((feature, index) => (
                 <motion.li
                   key={index}
-                  className="flex items-center text-sm sm:text-base group"
+                  className="flex items-center text-xs sm:text-sm md:text-base group"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-blue-500 flex-shrink-0 group-hover:text-blue-400 transition-colors" />
+                  <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-3 text-blue-500 flex-shrink-0 group-hover:text-blue-400 transition-colors" />
                   <span className="group-hover:text-blue-400 transition-colors">{feature.text}</span>
                 </motion.li>
               ))}

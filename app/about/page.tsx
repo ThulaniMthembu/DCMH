@@ -22,7 +22,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <Image
-        src="/about-img.jpg"
+        src="/about-image.jpeg"
         alt="About Dot Com Media House"
         layout="fill"
         objectFit="cover"

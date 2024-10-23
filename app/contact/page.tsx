@@ -82,7 +82,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
       <Image
-        src="/contact-img.jpg"
+        src="/contact-image.jpg"
         alt="Contact Us"
         layout="fill"
         objectFit="cover"
