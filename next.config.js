@@ -14,10 +14,6 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: '*.dotcommediahouse.com',
 			},
-			{
-				protocol: 'http',
-				hostname: 'localhost',
-			},
 		],
 	},
 	async rewrites() {
@@ -28,6 +24,8 @@ const nextConfig = {
 			},
 		];
 	},
+	trailingSlash: false,
+	output: 'standalone',
 };
 
 module.exports = nextConfig;
