@@ -167,17 +167,17 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
   handleSubmit: (e: React.FormEvent) => void;
 }) {
   return (
-    <section className="py-12 sm:py-20">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-blue-400"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           Send Us a Message
         </motion.h2>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto bg-gray-800 p-8 rounded-lg shadow-2xl">
           <motion.form
             onSubmit={handleSubmit}
             className="space-y-6"
@@ -186,7 +186,7 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">
+              <label htmlFor="name" className="block text-sm font-medium mb-2 text-blue-300">
                 Name
               </label>
               <Input
@@ -196,11 +196,11 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full text-black"
+                className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">
+              <label htmlFor="email" className="block text-sm font-medium mb-2 text-blue-300">
                 Email
               </label>
               <Input
@@ -210,11 +210,11 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full text-black"
+                className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
+              <label htmlFor="message" className="block text-sm font-medium mb-2 text-blue-300">
                 Message
               </label>
               <Textarea
@@ -223,11 +223,11 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full text-black"
+                className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
                 rows={6}
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
               Send Message
             </Button>
           </motion.form>
