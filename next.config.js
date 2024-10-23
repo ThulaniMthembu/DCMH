@@ -19,6 +19,7 @@ const nextConfig = {
 				hostname: '*.vercel.app',
 			},
 		],
+		unoptimized: true,
 	},
 	async rewrites() {
 		return [
@@ -32,12 +33,6 @@ const nextConfig = {
 	output: 'standalone',
 	assetPrefix: '',
 	basePath: '',
-	webpack: (config, { isServer }) => {
-		if (!isServer) {
-			config.resolve.fallback = { fs: false, module: false };
-		}
-		return config;
-	},
 };
 
 module.exports = nextConfig;
