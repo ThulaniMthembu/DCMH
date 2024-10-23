@@ -9,7 +9,16 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'placeholder.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'dotcommediahouse.com',
+			},
+			{
+				protocol: 'https',
+				hostname: '*.dotcommediahouse.com',
+			},
 		],
+		domains: ['dotcommediahouse.com'],
 	},
 };
 
