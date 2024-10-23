@@ -4,7 +4,6 @@ const nextConfig = {
 	swcMinify: true,
 	transpilePackages: ['framer-motion'],
 	images: {
-		domains: ['dotcommediahouse.com'],
 		remotePatterns: [
 			{
 				protocol: 'https',
@@ -15,14 +14,6 @@ const nextConfig = {
 				hostname: '*.dotcommediahouse.com',
 			},
 		],
-	},
-	async rewrites() {
-		return [
-			{
-				source: '/:path*',
-				destination: '/:path*',
-			},
-		];
 	},
 	trailingSlash: false,
 	output: 'standalone',
