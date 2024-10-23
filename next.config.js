@@ -4,7 +4,7 @@ const nextConfig = {
 	swcMinify: true,
 	transpilePackages: ['framer-motion'],
 	images: {
-		domains: ['dotcommediahouse.com'],
+		domains: ['dotcommediahouse.com', 'www.dotcommediahouse.com'],
 		remotePatterns: [
 			{
 				protocol: 'https',
@@ -13,6 +13,10 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: '*.dotcommediahouse.com',
+			},
+			{
+				protocol: 'https',
+				hostname: '*.vercel.app',
 			},
 		],
 	},
@@ -26,8 +30,14 @@ const nextConfig = {
 	},
 	trailingSlash: false,
 	output: 'standalone',
-	assetPrefix: '/',
+	assetPrefix: '',
 	basePath: '',
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			config.resolve.fallback = { fs: false, module: false };
+		}
+		return config;
+	},
 };
 
 module.exports = nextConfig;
