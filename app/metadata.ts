@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: '%s | Dot Com Media House'
   },
   description: 'Dot Com Media House offers cutting-edge media solutions for the digital age, specializing in advertising, event management, and branding.',
-  keywords: ['media house', 'digital marketing', 'event management', 'branding', 'e-gaming', 'content creation'],
+  keywords: ['The Vibe Gaming', 'Vibe Gaming' ,'media house', 'digital marketing', 'event management', 'branding', 'e-gaming', 'content creation'],
   authors: [{ 
     name: 'Thulani Dev-Majxr Mthembu', 
     url: 'https://devmajxr.co.za' 
@@ -59,8 +59,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   verification: {
-    google: 'your-google-site-verification-code',
-    yandex: 'your-yandex-verification-code',
+    google: 'google523f418b1738107c.html'
   },
   alternates: {
     canonical: 'https://www.dotcommediahouse.com',
