@@ -2,23 +2,28 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import emailjs from '@emailjs/browser'
 import toast, { Toaster } from 'react-hot-toast'
-import { CheckCircle, XCircle, MapPin, Clock, Phone, Mail } from 'lucide-react'
+import { CheckCircle, XCircle, MapPin, Clock, Phone, Mail, Loader2 } from 'lucide-react'
 
 const CustomToast = ({ message, type }: { message: string; type: 'success' | 'error' }) => (
-  <div className={`${type === 'success' ? 'bg-green-800' : 'bg-red-800'} text-white p-4 rounded-lg shadow-lg flex items-center`}>
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 50 }}
+    className={`${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white p-4 rounded-lg shadow-lg flex items-center`}
+  >
     {type === 'success' ? (
       <CheckCircle className="w-6 h-6 mr-2" />
     ) : (
       <XCircle className="w-6 h-6 mr-2" />
     )}
-    <span>{message}</span>
-  </div>
+    <span className="font-medium">{message}</span>
+  </motion.div>
 )
 
 export default function Contact() {
@@ -27,6 +32,7 @@ export default function Contact() {
     email: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -38,6 +44,7 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
     try {
       const result = await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
@@ -46,15 +53,17 @@ export default function Contact() {
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       )
       console.log(result.text)
-      toast.custom(() => (
-        <CustomToast message="Message sent successfully!" type="success" />
-      ))
+      toast.custom((t) => (
+        <CustomToast message="Message sent successfully! We'll get back to you soon." type="success" />
+      ), { duration: 5000 })
       setFormData({ name: "", email: "", message: "" })
     } catch (error) {
       console.error('Error sending email:', error)
-      toast.custom(() => (
-        <CustomToast message="Failed to send message. Please try again." type="error" />
-      ))
+      toast.custom((t) => (
+        <CustomToast message="Failed to send message. Please try again later." type="error" />
+      ), { duration: 5000 })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -63,7 +72,7 @@ export default function Contact() {
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 3000,
+          duration: 5000,
           style: {
             background: 'transparent',
             boxShadow: 'none',
@@ -72,7 +81,7 @@ export default function Contact() {
       />
       <HeroSection />
       <ContactInfoSection />
-      <ContactForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+      <ContactForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} isSubmitting={isSubmitting} />
       <MapSection />
     </div>
   )
@@ -161,10 +170,11 @@ function ContactInfoItem({ icon: Icon, title, content }: { icon: React.ElementTy
   )
 }
 
-function ContactForm({ formData, handleChange, handleSubmit }: {
+function ContactForm({ formData, handleChange, handleSubmit, isSubmitting }: {
   formData: { name: string; email: string; message: string };
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   handleSubmit: (e: React.FormEvent) => void;
+  isSubmitting: boolean;
 }) {
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-black">
@@ -197,6 +207,7 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 onChange={handleChange}
                 required
                 className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -211,6 +222,7 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 onChange={handleChange}
                 required
                 className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -225,11 +237,33 @@ function ContactForm({ formData, handleChange, handleSubmit }: {
                 required
                 className="w-full bg-gray-700 text-white border-gray-600 focus:border-blue-500 focus:ring-blue-500"
                 rows={6}
+                disabled={isSubmitting}
               />
             </div>
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-              Send Message
-            </Button>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isSubmitting ? 'submitting' : 'idle'}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
+                </Button>
+              </motion.div>
+            </AnimatePresence>
           </motion.form>
         </div>
       </div>
