@@ -40,10 +40,10 @@ export default function Contact() {
     e.preventDefault()
     try {
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formData,
-        'YOUR_USER_ID'
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
       )
       console.log(result.text)
       toast.custom(() => (
