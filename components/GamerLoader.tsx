@@ -14,14 +14,15 @@ export default function GamerLoader() {
     const loadTimer = setTimeout(() => {
       if (document.readyState === 'complete') {
         setIsVisible(false)
-      }
-    }, 3000)
+      } else {
+        // If the document is not complete after 4 seconds, we'll check again after 1 more second
+        const slowConnectionTimer = setTimeout(() => {
+          setIsVisible(document.readyState !== 'complete')
+        }, 1000)
 
-    const slowConnectionTimer = setTimeout(() => {
-      if (document.readyState !== 'complete') {
-        setIsVisible(true)
+        return () => clearTimeout(slowConnectionTimer)
       }
-    }, 5000)
+    }, 4000)
 
     window.addEventListener('load', handleLoad)
 
@@ -33,7 +34,6 @@ export default function GamerLoader() {
 
     return () => {
       clearTimeout(loadTimer)
-      clearTimeout(slowConnectionTimer)
       window.removeEventListener('load', handleLoad)
       document.body.style.overflow = 'unset'
     }
@@ -43,12 +43,12 @@ export default function GamerLoader() {
     <AnimatePresence>
       {isVisible && (
         <motion.div 
-          className="fixed inset-0 bg-black flex items-center justify-center z-[9999]"
+          className="fixed inset-0 bg-black flex flex-col items-center justify-center z-[9999]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative w-32 h-32 sm:w-48 sm:h-48">
+          <div className="relative w-32 h-32 sm:w-48 sm:h-48 mb-4 sm:mb-6">
             <motion.div
               className="absolute inset-0 border-4 border-blue-500 rounded-full"
               animate={{
@@ -100,7 +100,7 @@ export default function GamerLoader() {
             </motion.div>
           </div>
           <motion.p
-            className="absolute bottom-10 text-white text-lg sm:text-2xl font-bold"
+            className="text-white text-lg sm:text-2xl font-bold mt-5 sm:mt-7"
             animate={{
               opacity: [0, 1, 0],
             }}

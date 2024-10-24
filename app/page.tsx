@@ -27,7 +27,15 @@ function HeroSection() {
         fill
         priority
         quality={100}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
+      />
+      <Image
+        src="/home-portrait.jpeg"
+        alt="Hero background mobile"
+        fill
+        priority
+        quality={100}
+        className="absolute inset-0 w-full h-full object-cover object-center md:hidden"
       />
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
