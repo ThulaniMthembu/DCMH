@@ -52,7 +52,7 @@ export default function Gallery() {
   }, [selectedImage])
 
   return (
-    <div className="relative min-h-screen bg-black text-white bg-[url('/gallery-image.jpg')] bg-cover bg-center bg-fixed">
+    <div className="relative min-h-screen bg-black text-white bg-[url('/gallery-background.jpg')] bg-cover bg-center bg-fixed">
       <div className="absolute inset-0 bg-black bg-opacity-70"></div>
       <section className="relative py-8 sm:py-12">
         <div className="container mx-auto px-4">
