@@ -3,39 +3,92 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+// Define types for style objects
+type CSSProperties = React.CSSProperties
+type BodyStyleKey = keyof BodyStyles
+type BodyStyles = {
+  overflow: string;
+  height: string;
+  width: string;
+  position: string;
+  top: string;
+  left: string;
+  paddingRight: string;
+}
+
+const styles = {
+  noScroll: {
+    overflow: 'hidden',
+    height: '100vh',
+    width: '100vw',
+    position: 'fixed',
+    top: '0',
+    left: '0'
+  } as const
+}
+
 export default function GamerLoader() {
   const [isVisible, setIsVisible] = useState(true)
-
+  
   useEffect(() => {
+    // Store original body styles with proper typing
+    const originalStyles: BodyStyles = {
+      overflow: document.body.style.overflow,
+      height: document.body.style.height,
+      width: document.body.style.width,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      paddingRight: document.body.style.paddingRight
+    }
+
+    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth
+
     const handleLoad = () => {
       setIsVisible(false)
     }
+
+    let slowConnectionTimer: NodeJS.Timeout
 
     const loadTimer = setTimeout(() => {
       if (document.readyState === 'complete') {
         setIsVisible(false)
       } else {
-        // If the document is not complete after 4 seconds, we'll check again after 1 more second
-        const slowConnectionTimer = setTimeout(() => {
+        slowConnectionTimer = setTimeout(() => {
           setIsVisible(document.readyState !== 'complete')
         }, 1000)
-
-        return () => clearTimeout(slowConnectionTimer)
       }
     }, 4000)
 
-    window.addEventListener('load', handleLoad)
-
+    // Apply scroll prevention when loader is visible
     if (isVisible) {
-      document.body.style.overflow = 'hidden'
+      Object.keys(styles.noScroll).forEach((key) => {
+        const styleKey = key as keyof typeof styles.noScroll;
+        document.body.style[styleKey] = styles.noScroll[styleKey];
+      });
+      document.body.style.paddingRight = `${scrollBarWidth}px`
     } else {
-      document.body.style.overflow = 'unset'
+      // Restore original styles when loader is hidden
+      Object.keys(originalStyles).forEach((key) => {
+        const styleKey = key as BodyStyleKey;
+        document.body.style[styleKey] = originalStyles[styleKey];
+      });
     }
 
+    window.addEventListener('load', handleLoad)
+
+    // Cleanup function
     return () => {
       clearTimeout(loadTimer)
+      if (slowConnectionTimer) {
+        clearTimeout(slowConnectionTimer)
+      }
       window.removeEventListener('load', handleLoad)
-      document.body.style.overflow = 'unset'
+      // Restore original styles on unmount
+      Object.keys(originalStyles).forEach((key) => {
+        const styleKey = key as BodyStyleKey;
+        document.body.style[styleKey] = originalStyles[styleKey];
+      });
     }
   }, [isVisible])
 

@@ -30,7 +30,7 @@ function HeroSection() {
         className="absolute inset-0 w-full h-full object-cover object-center hidden md:block"
       />
       <Image
-        src="/home-portrait.jpeg"
+        src="/homepage-img-port.jpg"
         alt="Hero background mobile"
         fill
         priority
