@@ -6,12 +6,39 @@ import Link from 'next/link'
 import { motion } from "framer-motion"
 import { ArrowRight, Eye, Users, MapPin, Play, Pause, Volume2, VolumeX } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
+
+interface BlogPost {
+  id: string
+  title: string
+  content: string
+  date: string
+}
 
 export default function Home() {
+  const [latestPost, setLatestPost] = useState<BlogPost | null>(null)
+
+  useEffect(() => {
+    const fetchLatestPost = async () => {
+      const postsCollection = collection(db, 'posts')
+      const postsQuery = query(postsCollection, orderBy('date', 'desc'), limit(1))
+      const querySnapshot = await getDocs(postsQuery)
+      if (!querySnapshot.empty) {
+        const post = querySnapshot.docs[0].data() as BlogPost
+        post.id = querySnapshot.docs[0].id
+        setLatestPost(post)
+      }
+    }
+
+    fetchLatestPost()
+  }, [])
+
   return (
     <div className="bg-black text-white overflow-x-hidden">
       <HeroSection />
       <ServicesSection />
+      <BlogSection latestPost={latestPost} />
       <ActivationSection />
       <CtaSection />
     </div>
@@ -112,6 +139,34 @@ function ServicesSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function BlogSection({ latestPost }: { latestPost: BlogPost | null }) {
+  return (
+    <section className="py-12 sm:py-16 md:py-20 bg-black">
+      <div className="container mx-auto px-4">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center">Latest from Our Blog</h2>
+        {latestPost ? (
+          <div className="bg-gray-900 p-6 rounded-lg">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">{latestPost.title}</h3>
+            <p className="text-gray-400 text-sm sm:text-base mb-4">
+              {latestPost.content.length > 200
+                ? `${latestPost.content.substring(0, 200)}...`
+                : latestPost.content}
+            </p>
+            <Button asChild size="sm" className="bg-white text-black hover:bg-gray-200">
+              <Link href={`/blog/${latestPost.id}`}>
+                Read More
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        ) : (
+          <p className="text-center text-gray-400">No blog posts available at the moment.</p>
+        )}
       </div>
     </section>
   )
