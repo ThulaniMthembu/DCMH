@@ -2,15 +2,17 @@
 
 import Image from 'next/image'
 import { motion } from "framer-motion"
-import { Calendar, TrendingUp, Users, Target, Zap, Globe } from "lucide-react"
+import { Calendar, TrendingUp, Users, Target, Zap, Globe } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Timeline from "@/components/Timeline"
 
 export default function About() {
   return (
     <div className="bg-black text-white">
       <HeroSection />
       <CompanyBackground />
+      <Timeline />
       <OurApproach />
       <MissionSection />
       <AchievementsSection />

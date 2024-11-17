@@ -8,6 +8,7 @@ import { ArrowRight, Eye, Users, MapPin, Play, Pause, Volume2, VolumeX } from "l
 import { Button } from "@/components/ui/button"
 import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
+import TestimonialCarousel from '@/components/TestimonialCarousel'
 
 interface BlogPost {
   id: string
@@ -38,6 +39,7 @@ export default function Home() {
     <div className="bg-black text-white overflow-x-hidden">
       <HeroSection />
       <ServicesSection />
+      <TestimonialSection />
       <BlogSection latestPost={latestPost} />
       <ActivationSection />
       <CtaSection />
@@ -139,6 +141,17 @@ function ServicesSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function TestimonialSection() {
+  return (
+    <section className="py-16 bg-gray-900">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+        <TestimonialCarousel />
       </div>
     </section>
   )
