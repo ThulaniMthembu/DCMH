@@ -3,24 +3,24 @@ import { Metadata, Viewport } from 'next'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.dotcommediahouse.com'),
   title: {
-    default: 'Dot Com Media House | Innovative Media Solutions',
-    template: '%s | Dot Com Media House'
+    default: 'Dot Com Media House | Innovative Media Solutions | The Vibe Gaming',
+    template: '%s | Dot Com Media House, The Vibe Gaming'
   },
-  description: 'Dot Com Media House offers cutting-edge media solutions for the digital age, specializing in advertising, event management, and branding.',
+  description: 'Dot Com Media House, also known as The Vibe Gaming offers cutting-edge media solutions for the digital age, specializing in advertising, event management, and branding.',
   keywords: ['The Vibe Gaming', 'Vibe Gaming' ,'media house', 'digital marketing', 'event management', 'branding', 'e-gaming', 'content creation'],
   authors: [{ 
     name: 'Thulani Dev-Majxr Mthembu', 
     url: 'https://devmajxr.co.za' 
   }],
   creator: 'Thulani Dev-Majxr Mthembu',
-  publisher: 'Dot Com Media House',
+  publisher: 'Dot Com Media House, The Vibe Gaming',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'Dot Com Media House | Innovative Media Solutions',
+    title: 'Dot Com Media House | Innovative Media Solutions | The Vibe Gaming',
     description: 'Cutting-edge media solutions for the digital age, specializing in advertising, event management, and branding.',
     url: 'https://dotcommediahouse.com',
     siteName: 'Dot Com Media House',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dot Com Media House | Innovative Media Solutions',
+    title: 'Dot Com Media House | Innovative Media Solutions | The Vibe Gaming',
     description: 'Cutting-edge media solutions for the digital age, specializing in advertising, event management, and branding.',
     images: ['https://dotcommediahouse.com/twitter-image.jpg'],
     creator: '@dotcommediahouse',
