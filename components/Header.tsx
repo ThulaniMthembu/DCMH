@@ -122,19 +122,6 @@ export default function Header() {
               ))}
             </nav>
             <div className="flex items-center space-x-4">
-              {user ? (
-                <Link href="/admin">
-                  <Button variant="outline" size="sm" className="text-white border-white hover:bg-white hover:text-black">
-                    Admin
-                  </Button>
-                </Link>
-              ) : (
-                <Link href="/admin">
-                  <Button variant="outline" size="sm" className="text-white border-white hover:bg-white hover:text-black">
-                    Sign In
-                  </Button>
-                </Link>
-              )}
               <div className="md:hidden flex-shrink-0">
                 <Button
                   variant="ghost"
@@ -209,31 +196,6 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
-              {user ? (
-                <motion.div
-                  custom={menuItems.length}
-                  variants={menuItemVariants}
-                  className="mt-6 sm:mt-8 w-full"
-                >
-                  <Link href="/admin" onClick={toggleMenu} className="block w-full">
-                    <Button variant="outline" size="lg" className="w-full text-white border-white hover:bg-white hover:text-black">
-                      Admin
-                    </Button>
-                  </Link>
-                </motion.div>
-              ) : (
-                <motion.div
-                  custom={menuItems.length}
-                  variants={menuItemVariants}
-                  className="mt-6 sm:mt-8 w-full"
-                >
-                  <Link href="/admin" onClick={toggleMenu} className="block w-full">
-                    <Button variant="outline" size="lg" className="w-full text-white border-white hover:bg-white hover:text-black">
-                      Sign In
-                    </Button>
-                  </Link>
-                </motion.div>
-              )}
             </nav>
           </motion.div>
         )}
