@@ -58,7 +58,7 @@ function HeroSection() {
 function CompanyBackground() {
   const milestones = [
     { icon: Calendar, title: "Established", description: "Founded in 2021 with a vision to revolutionize media marketing" },
-    { icon: Users, title: "Experience", description: "Over 10 years of combined expertise in marketing, events, and branding" },
+    { icon: Users, title: "Experience", description: "Extensive expertise in marketing, events, and branding" },
     { icon: TrendingUp, title: "Growth", description: "Rapidly expanding client base across diverse industries" },
     { icon: Globe, title: "Reach", description: "Serving clients nationwide with innovative media solutions" },
   ]

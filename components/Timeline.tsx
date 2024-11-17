@@ -18,8 +18,8 @@ const timelineEvents: TimelineEvent[] = [
   },
   {
     year: 2022,
-    title: "Launch of V-Gaming Division",
-    description: "Expanded into the e-gaming market with innovative event concepts."
+    title: "Launch of Vibe Gaming Division",
+    description: "Expanded into the e-gaming market with innovative event concepts and moved into our first gaming shop based in Newtown Junction Mall."
   },
   {
     year: 2023,
@@ -28,8 +28,8 @@ const timelineEvents: TimelineEvent[] = [
   },
   {
     year: 2024,
-    title: "Expansion to New Office",
-    description: "Moved to a larger office space to accommodate our growing team and client base."
+    title: "Driving Growth and Innovation",
+    description: "Proven track record of driving growth and innovation in marketing, events, and branding.."
   }
 ]
 
